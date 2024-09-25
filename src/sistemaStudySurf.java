@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 
 
-public class sistemStudySurf {
+public class sistemaStudySurf {
 
     static Scanner teclado = new Scanner(System.in);
     static int senha = 1, senhaDigitada, idadeAluno, pesoAluno, i = 10, idadeProfessor, rgProfessor, dia, hora;
@@ -64,17 +64,42 @@ public class sistemStudySurf {
             System.out.println(menu);
             opcao = teclado.nextInt();
 
-            if (opcao == 1) {
+            switch (opcao) {
+
+                case 1:
                 cadastrarAluno();
-            } else if (opcao == 2 ){
+                break;
+
+                case 2:
                 cadastrarProfessor();
-            } else if (opcao == 3) {
+                break;
+
+                case 3:
                 listaAlunos();
-            } else if (opcao == 4) {
+                break;
+
+                case 4:
                 listaProfessores();
-            } else if (opcao == 5) {
+                break;
+
+                case 5:
                 marcarAula();
+                break;
+                
+                case 6:
+                listaAulas();    
+                break;
             }
+        }
+    }
+    
+    public static void voltarMenu(){
+        System.out.println("Deseja voltar ao menu?");
+        opcao = teclado.next();
+        if (Objects.equals(opcao, "sim")) {
+
+        } else if (Objects.equals(opcao, "não")){
+            System.exit(i);
         }
     }
 
@@ -98,37 +123,30 @@ public class sistemStudySurf {
 
 
 
-                    System.out.println("O aluno possui prancha?");
-                    possuiPrancha = teclado.next();
+        System.out.println("O aluno possui prancha?");
+        possuiPrancha = teclado.next();
 
-                    if (Objects.equals(possuiPrancha, "não")) {
+        if (Objects.equals(possuiPrancha, "não")) {
 
-                        System.out.println("Para recomendarmos o melhor tipo de prancha para o aluno informe:");
+            System.out.println("Para recomendarmos o melhor tipo de prancha para o aluno informe:");
 
-                        System.out.println("Qual o peso do aluno?");
-                        pesoAluno = teclado.nextInt();
+            System.out.println("Qual o peso do aluno?");
+            pesoAluno = teclado.nextInt();
 
-                        System.out.println("Quanto de altura o aluno tem?");
-                        alturaAluno = teclado.nextDouble();
+            System.out.println("Quanto de altura o aluno tem?");
+            alturaAluno = teclado.nextDouble();
 
-                        System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma dasdaw");
+            System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma dasdaw");
 
-                    }  else if ( possuiPrancha == "sim") {
-                        System.out.println("Aluno cadastrado com sucesso!");
-                    }
-
-
-        System.out.println("Aluno cadastrado com sucesso!");
+        }  else if ( possuiPrancha == "sim") {
+            System.out.println("Aluno cadastrado com sucesso!");
+        }
 
 
-                    System.out.println("Deseja voltar ao menu?");
-                    opcao = teclado.next();
-                    if (opcao == "sim") {
+        System.out.println("Aluno cadastrado com sucesso!\n");
 
-                    } else if (Objects.equals(opcao, "não")){
-                    System.exit(i);
-                    }
 
+        voltarMenu();
 
     }
 
@@ -148,13 +166,7 @@ public class sistemStudySurf {
 
         System.out.println("Professor cadastrado com sucesso!");
 
-        System.out.println("Deseja voltar ao menu?");
-        opcao = teclado.next();
-        if (opcao == "sim") {
-
-        } else if (Objects.equals(opcao, "não")){
-            System.exit(i);
-        }
+        voltarMenu();
     }
 
     public static void listaAlunos(){
@@ -168,13 +180,7 @@ public class sistemStudySurf {
                             5- Weslley
                             """);
 
-        System.out.println("Deseja voltar ao menu?");
-        opcao = teclado.next();
-        if (opcao == "sim") {
-
-        } else if (Objects.equals(opcao, "não")){
-            System.exit(i);
-        }
+        voltarMenu();
     }
 
     public static void listaProfessores(){
@@ -186,13 +192,7 @@ public class sistemStudySurf {
                             3- Pedro
                             """);
 
-        System.out.println("Deseja voltar ao menu?");
-        opcao = teclado.next();
-        if (opcao == "sim") {
-
-        } else if (Objects.equals(opcao, "não")){
-            System.exit(i);
-        }
+        voltarMenu();
 
     }
 
@@ -209,13 +209,11 @@ public class sistemStudySurf {
         System.out.println("Nome do professor que irá dar aula: ");
         professor = teclado.next();
 
-        System.out.println("Deseja voltar ao menu?");
-        opcao = teclado.next();
-        if (opcao == "sim") {
+        voltarMenu();
 
-        } else if (Objects.equals(opcao, "não")){
-            System.exit(i);
-        }
-
+    }
+    
+    public static void listaAulas(){
+        
     }
 }
