@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class sistemaStudySurf {
 
     static Scanner teclado = new Scanner(System.in);
-    static int senha = 1, senhaDigitada, idadeAluno, pesoAluno, i = 10, idadeProfessor, rgProfessor, dia, hora;
+    static int senha = 1, senhaDigitada, idadeAluno, pesoAluno, i = 10, idadeProfessor, rgProfessor, diaEHora;
 
     static String usuario = "s", usuarioDigitado, aluno, numeroAluno, conhecimentoAluno, opcao, possuiPrancha,
             nomeProfessor, enderecoProfessor, professor;
@@ -67,38 +67,39 @@ public class sistemaStudySurf {
             switch (opcao) {
 
                 case 1:
-                cadastrarAluno();
-                break;
+                    cadastrarAluno();
+                    break;
 
                 case 2:
-                cadastrarProfessor();
-                break;
+                    cadastrarProfessor();
+                    break;
 
                 case 3:
-                listaAlunos();
-                break;
+                    listaAlunos();
+                    break;
 
                 case 4:
-                listaProfessores();
-                break;
+                    listaProfessores();
+                    break;
 
                 case 5:
-                marcarAula();
-                break;
-                
+                    marcarAula();
+                    break;
+
                 case 6:
-                listaAulas();    
-                break;
+                    listaAulas();
+                    break;
             }
         }
     }
-    
+
     public static void voltarMenu(){
-        System.out.println("Deseja voltar ao menu?");
+        System.out.println("\nDeseja voltar ao menu?");
         opcao = teclado.next();
         if (Objects.equals(opcao, "sim")) {
 
-        } else if (Objects.equals(opcao, "não")){
+        } else if (opcao.equalsIgnoreCase("não")){
+            System.out.println("Obrigado por utilizar o sistema, volte sempre!");
             System.exit(i);
         }
     }
@@ -138,12 +139,15 @@ public class sistemaStudySurf {
 
             System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma dasdaw");
 
+            System.out.println("Aluno cadastrado com sucesso!\n");
+
+
         }  else if ( possuiPrancha == "sim") {
             System.out.println("Aluno cadastrado com sucesso!");
         }
 
 
-        System.out.println("Aluno cadastrado com sucesso!\n");
+
 
 
         voltarMenu();
@@ -203,17 +207,18 @@ public class sistemaStudySurf {
         aluno = teclado.next();
 
         System.out.println("Qual dia e horário desejado para aula?");
-        dia = teclado.nextInt();
-        hora = teclado.nextInt();
+        diaEHora = teclado.nextInt();
+
 
         System.out.println("Nome do professor que irá dar aula: ");
         professor = teclado.next();
 
+
         voltarMenu();
 
     }
-    
+
     public static void listaAulas(){
-        
+
     }
 }
