@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class sistemaStudySurf {
 
     static Scanner teclado = new Scanner(System.in);
-    static int senha = 1, senhaDigitada, idadeAluno, pesoAluno, i = 10, idadeProfessor, rgProfessor, diaEHora;
+    static int senha = 1, senhaDigitada, idadeAluno, pesoAluno, i = 10, idadeProfessor, rgProfessor, diaEHora, opcaoDirecionar;
 
     static String usuario = "s", usuarioDigitado, aluno, numeroAluno, conhecimentoAluno, opcao, possuiPrancha,
-            nomeProfessor, enderecoProfessor, professor;
+            nomeProfessor, enderecoProfessor, professor, escolhaPrancha, formaPagamento, finalCompra;
 
     static double alturaAluno;
 
@@ -98,7 +98,58 @@ public class sistemaStudySurf {
         opcao = teclado.next();
         if (Objects.equals(opcao, "sim")) {
 
-        } else if (opcao.equalsIgnoreCase("não")){
+        } else if (opcao.equalsIgnoreCase("não") || opcao.equalsIgnoreCase("nao")){
+            System.out.println("Obrigado por utilizar o sistema, volte sempre!");
+            System.exit(i);
+        }
+    }
+
+    public static void lojaPranchas(){
+        System.out.println("*** Bem vindo a loja de pranchas da Study surf! \n***");
+
+        String pranchas = """
+                ***Escolha um tipo de prancha disponivel! ***
+                1- Long - R$3,000,00
+                2- Fan - R$1,200,00
+                3- Speed - R$1,000,00
+                """;
+        System.out.println(pranchas);
+        escolhaPrancha = teclado.next();
+
+        switch (escolhaPrancha){
+            case "1":
+                System.out.println("forma de pagamento: ");
+                formaPagamento = teclado.next();
+
+                System.out.println("Desejar finalizar ou cancelar a compra?");
+                finalCompra = teclado.next();
+                
+                if (finalCompra == "finalizar") {
+                    System.out.println("Obrigado pela compra!");
+                    
+                    else if (finalCompra == "cancelar") {
+                        
+                        
+                    }
+                }
+        }
+    }
+
+    public static void direcionamento(){
+        String direcionar = """
+                *** Selecione uma opção ***
+                1- Ir para loja de pranchas
+                2- Ir para o menu inicial
+                3- sair
+                """;
+        System.out.println(direcionar);
+        opcaoDirecionar = teclado.nextInt();
+
+        if (opcaoDirecionar == 1) {
+            lojaPranchas();
+        } else if (opcaoDirecionar == 2) {
+            return;
+        } else if (opcaoDirecionar == 3) {
             System.out.println("Obrigado por utilizar o sistema, volte sempre!");
             System.exit(i);
         }
@@ -141,16 +192,20 @@ public class sistemaStudySurf {
 
             System.out.println("Aluno cadastrado com sucesso!\n");
 
+            direcionamento();
+
+
+
+
+
 
         }  else if ( possuiPrancha == "sim") {
             System.out.println("Aluno cadastrado com sucesso!");
+            voltarMenu();
         }
 
 
 
-
-
-        voltarMenu();
 
     }
 
