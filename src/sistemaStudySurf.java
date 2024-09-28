@@ -104,11 +104,11 @@ public class sistemaStudySurf {
         }
     }
 
-    public static void lojaPranchas(){
-        System.out.println("*** Bem vindo a loja de pranchas da Study surf! \n***");
+    public static void lojaPranchas() {
+        System.out.println("Bem vindo a loja de pranchas da Study surf!\n");
 
         String pranchas = """
-                ***Escolha um tipo de prancha disponivel! ***
+                *** Escolha um tipo de prancha disponivel! ***
                 1- Long - R$3,000,00
                 2- Fan - R$1,200,00
                 3- Speed - R$1,000,00
@@ -116,21 +116,52 @@ public class sistemaStudySurf {
         System.out.println(pranchas);
         escolhaPrancha = teclado.next();
 
-        switch (escolhaPrancha){
+        switch (escolhaPrancha) {
             case "1":
                 System.out.println("forma de pagamento: ");
                 formaPagamento = teclado.next();
 
                 System.out.println("Desejar finalizar ou cancelar a compra?");
                 finalCompra = teclado.next();
-                
-                if (finalCompra == "finalizar") {
-                    System.out.println("Obrigado pela compra!");
-                    
-                    else if (finalCompra == "cancelar") {
-                        
-                        
-                    }
+
+                if (Objects.equals(finalCompra, "finalizar")) {
+                    System.out.println("Obrigado pela compra, volte sempre!");
+                } else if (Objects.equals(finalCompra, "cancelar")) {
+                    System.out.println("Compra cancelada!");
+                } else {
+                    System.out.println("Opção digitada invalida!");
+                    return;
+                }
+
+            case "2":
+                System.out.println("forma de pagamento: ");
+                formaPagamento = teclado.next();
+
+                System.out.println("Desejar finalizar ou cancelar a compra?");
+                finalCompra = teclado.next();
+
+                if (Objects.equals(finalCompra, "finalizar")) {
+                    System.out.println("Obrigado pela compra, volte sempre!");
+                } else if (Objects.equals(finalCompra, "cancelar")) {
+                    System.out.println("Compra cancelada!");
+                } else {
+                    System.out.println("Opção digitada invalida!");
+                    return;
+                }
+            case "3":
+                System.out.println("forma de pagamento: ");
+                formaPagamento = teclado.next();
+
+                System.out.println("Desejar finalizar ou cancelar a compra?");
+                finalCompra = teclado.next();
+
+                if (Objects.equals(finalCompra, "finalizar")) {
+                    System.out.println("Obrigado pela compra, volte sempre!");
+                } else if (Objects.equals(finalCompra, "cancelar")) {
+                    System.out.println("Compra cancelada!");
+                } else {
+                    System.out.println("Opção digitada invalida!");
+                    return;
                 }
         }
     }
