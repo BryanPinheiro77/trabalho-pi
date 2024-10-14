@@ -209,7 +209,7 @@ public class sistemaStudySurf {
         System.out.println("O aluno possui prancha?");
         possuiPrancha = teclado.next();
 
-        if (Objects.equals(possuiPrancha, "não")) {
+        if (Objects.equals(possuiPrancha, "não" || possuiPrancha, "nao")) {
 
             System.out.println("Para recomendarmos o melhor tipo de prancha para o aluno informe:");
 
