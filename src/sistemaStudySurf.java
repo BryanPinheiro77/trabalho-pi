@@ -1,15 +1,29 @@
+package Marcola;
+
+import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
+public class pi {
 
+        public static String[] listaAluno = new String[2];;
+        public static int[] idadeAluno = new int[2];;
+        public static int[] numeroAluno = new int[2];
+        public static String[] conhecimentoAluno = new String[2];
 
-public class sistemaStudySurf {
+   
+
+    public static String[] listaProfessor;
+    public static int[] idadeProfessor;
+    public static float[] rgProfessor;
+    public static String[] enderecoProfessor;
 
     static Scanner teclado = new Scanner(System.in);
-    static int senha = 1, senhaDigitada, idadeAluno, pesoAluno, i = 10, idadeProfessor, rgProfessor, diaEHora, opcaoDirecionar;
+    static int senha = 1, senhaDigitada, pesoAluno, o = 10, diaEHora, opcaoDirecionar;
 
-    static String usuario = "s", usuarioDigitado, aluno, numeroAluno, conhecimentoAluno, opcao, possuiPrancha,
-            nomeProfessor, enderecoProfessor, professor, escolhaPrancha, formaPagamento, finalCompra;
+    static String usuario = "s", usuarioDigitado, aluno, opcao, possuiPrancha,
+            professor, escolhaPrancha, formaPagamento, finalCompra;
 
     static double alturaAluno;
 
@@ -59,6 +73,7 @@ public class sistemaStudySurf {
                 """;
 
         int opcao = 0;
+        int i = 0;
         while (opcao != 10) {
 
             System.out.println(menu);
@@ -67,7 +82,7 @@ public class sistemaStudySurf {
             switch (opcao) {
 
                 case 1:
-                    cadastrarAluno();
+                    i=cadastrarAluno(i);
                     break;
 
                 case 2:
@@ -75,7 +90,7 @@ public class sistemaStudySurf {
                     break;
 
                 case 3:
-                    listaAlunos();
+                    listaAlunos(i);
                     break;
 
                 case 4:
@@ -100,7 +115,7 @@ public class sistemaStudySurf {
 
         } else if (opcao.equalsIgnoreCase("não") || opcao.equalsIgnoreCase("nao")){
             System.out.println("Obrigado por utilizar o sistema, volte sempre!");
-            System.exit(i);
+            System.exit(o);
         }
     }
 
@@ -182,34 +197,34 @@ public class sistemaStudySurf {
             return;
         } else if (opcaoDirecionar == 3) {
             System.out.println("Obrigado por utilizar o sistema, volte sempre!");
-            System.exit(i);
+            System.exit(o);
         }
     }
 
-    public static void cadastrarAluno () {
+    public static int cadastrarAluno (int i) {
 
 
-        //if (opcao == 1) {
-        System.out.print("Digite o nome do aluno: ");
-        aluno = teclado.next();
+        //for (i = 0; i < listaAluno.length; i++) {
 
-        System.out.print("Digite a idade do aluno: ");
-        idadeAluno = teclado.nextInt();
+            System.out.print("Digite o nome do aluno: ");
+            listaAluno[i] = teclado.next();
 
-        System.out.print("Digite o número para contato: ");
-        numeroAluno = teclado.next();
+            System.out.print("Digite a idade do aluno: ");
+            idadeAluno[i] = teclado.nextInt();
 
-        System.out.print("Qual o nivel de conhecimento do aluno: ");
-        conhecimentoAluno = teclado.next();
+            System.out.print("Digite o número para contato: ");
+            numeroAluno[i] = teclado.nextInt();
 
+            System.out.print("Qual o nivel de conhecimento do aluno: ");
+            conhecimentoAluno[i] = teclado.next();
 
-
+        //}
 
 
         System.out.println("O aluno possui prancha?");
         possuiPrancha = teclado.next();
 
-        if (Objects.equals(possuiPrancha, "não" || possuiPrancha, "nao")) {
+        if (Objects.equals(possuiPrancha, "não")) {
 
             System.out.println("Para recomendarmos o melhor tipo de prancha para o aluno informe:");
 
@@ -237,13 +252,18 @@ public class sistemaStudySurf {
 
 
 
-
+        i++;
+        return(i);
     }
 
     public static void cadastrarProfessor(){
+        listaProfessor = new String[2];
+        idadeProfessor = new int[2];
+        rgProfessor = new float[2];
+        enderecoProfessor = new String[2];
 
-        System.out.print("Qual nome do professor que deseja cadastrar: ");
-        nomeProfessor = teclado.next();
+        /*.out.print("Qual nome do professor que deseja cadastrar: ");
+        listaProfessor = teclado.next();
 
         System.out.print("Qual a idade do professor ?:  ");
         idadeProfessor = teclado.nextInt();
@@ -256,21 +276,24 @@ public class sistemaStudySurf {
 
         System.out.println("Professor cadastrado com sucesso!");
 
-        voltarMenu();
+        voltarMenu();*/
     }
 
-    public static void listaAlunos(){
+    public static void listaAlunos(int i){
 
-        System.out.println("""
+        /*System.out.println("""
                             \n****** Lista de alunos ******
                             1- Bryan
                             2- Marco
                             3- Maylla
                             4- Vanessa
                             5- Weslley
-                            """);
+                            """);*/
+        for (int j = 0; j < i; j++) {
+            System.out.println(listaAluno[j]);
+        }
+            voltarMenu();
 
-        voltarMenu();
     }
 
     public static void listaProfessores(){
