@@ -1,23 +1,20 @@
-package Marcola;
 
-import java.sql.SQLOutput;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class pi {
+public class sistemaStudySurf{
 
-        public static String[] listaAluno = new String[2];;
-        public static int[] idadeAluno = new int[2];;
-        public static int[] numeroAluno = new int[2];
-        public static String[] conhecimentoAluno = new String[2];
+    public static String[] listaAluno = new String[4];;
+    public static int[] idadeAluno = new int[4];;
+    public static int[] numeroAluno = new int[4];
+    public static String[] conhecimentoAluno = new String[4];
 
-   
 
-    public static String[] listaProfessor;
-    public static int[] idadeProfessor;
-    public static float[] rgProfessor;
-    public static String[] enderecoProfessor;
+
+    public static String[] listaProfessor = new String[4];
+    public static int[] idadeProfessor = new int[4];
+    public static float[] rgProfessor = new float[4];
+    public static String[] enderecoProfessor = new String[4];
 
     static Scanner teclado = new Scanner(System.in);
     static int senha = 1, senhaDigitada, pesoAluno, o = 10, diaEHora, opcaoDirecionar;
@@ -74,6 +71,7 @@ public class pi {
 
         int opcao = 0;
         int i = 0;
+        int p = 0;
         while (opcao != 10) {
 
             System.out.println(menu);
@@ -86,7 +84,7 @@ public class pi {
                     break;
 
                 case 2:
-                    cadastrarProfessor();
+                    p = cadastrarProfessor(p);
                     break;
 
                 case 3:
@@ -94,7 +92,7 @@ public class pi {
                     break;
 
                 case 4:
-                    listaProfessores();
+                    listaProfessores(p);
                     break;
 
                 case 5:
@@ -206,17 +204,17 @@ public class pi {
 
         //for (i = 0; i < listaAluno.length; i++) {
 
-            System.out.print("Digite o nome do aluno: ");
-            listaAluno[i] = teclado.next();
+        System.out.print("Digite o nome do aluno: ");
+        listaAluno[i] = teclado.next();
 
-            System.out.print("Digite a idade do aluno: ");
-            idadeAluno[i] = teclado.nextInt();
+        System.out.print("Digite a idade do aluno: ");
+        idadeAluno[i] = teclado.nextInt();
 
-            System.out.print("Digite o número para contato: ");
-            numeroAluno[i] = teclado.nextInt();
+        System.out.print("Digite o número para contato: ");
+        numeroAluno[i] = teclado.nextInt();
 
-            System.out.print("Qual o nivel de conhecimento do aluno: ");
-            conhecimentoAluno[i] = teclado.next();
+        System.out.print("Qual o nivel de conhecimento do aluno: ");
+        conhecimentoAluno[i] = teclado.next();
 
         //}
 
@@ -241,10 +239,6 @@ public class pi {
             direcionamento();
 
 
-
-
-
-
         }  else if ( possuiPrancha == "sim") {
             System.out.println("Aluno cadastrado com sucesso!");
             voltarMenu();
@@ -256,54 +250,45 @@ public class pi {
         return(i);
     }
 
-    public static void cadastrarProfessor(){
-        listaProfessor = new String[2];
-        idadeProfessor = new int[2];
-        rgProfessor = new float[2];
-        enderecoProfessor = new String[2];
+    public static int cadastrarProfessor(int p){
 
-        /*.out.print("Qual nome do professor que deseja cadastrar: ");
-        listaProfessor = teclado.next();
+        System.out.println("Qual nome do professor que deseja cadastrar: ");
+        listaProfessor[p] = teclado.next();
 
-        System.out.print("Qual a idade do professor ?:  ");
-        idadeProfessor = teclado.nextInt();
+        System.out.println("Qual a idade do professor ? ");
+        idadeProfessor[p] = teclado.nextInt();
 
-        System.out.print("Qual RG do professor?: ");
-        rgProfessor = teclado.nextInt();
+        System.out.println("Qual RG do professor? ");
+        rgProfessor[p] = teclado.nextInt();
 
-        System.out.print("Qual o endereço do Professor?: ");
-        enderecoProfessor = teclado.next();
+        System.out.println("Qual o endereço do Professor? ");
+        enderecoProfessor[p] = teclado.nextLine();
 
         System.out.println("Professor cadastrado com sucesso!");
 
-        voltarMenu();*/
+        voltarMenu();
+        p++;
+        return(p);
+
     }
+
 
     public static void listaAlunos(int i){
 
-        /*System.out.println("""
-                            \n****** Lista de alunos ******
-                            1- Bryan
-                            2- Marco
-                            3- Maylla
-                            4- Vanessa
-                            5- Weslley
-                            """);*/
+        System.out.println("\n****** Lista de alunos ******\n");
         for (int j = 0; j < i; j++) {
             System.out.println(listaAluno[j]);
         }
-            voltarMenu();
+        voltarMenu();
 
     }
 
-    public static void listaProfessores(){
+    public static void listaProfessores(int p){
 
-        System.out.println("""
-                            \n****** Lista de professores ******
-                            1- Gustavo
-                            2- Guilherme
-                            3- Pedro
-                            """);
+        System.out.println("\n****** Lista de professores ******\n");
+        for (int k = 0; k < p; k++) {
+            System.out.println(listaProfessor[k]);
+        }
 
         voltarMenu();
 
