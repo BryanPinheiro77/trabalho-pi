@@ -16,10 +16,14 @@ public class sistemaStudySurf{
     public static float[] rgProfessor = new float[4];
     public static String[] enderecoProfessor = new String[4];
 
-    static Scanner teclado = new Scanner(System.in);
-    static int senha = 1, senhaDigitada, pesoAluno, o = 10, diaEHora, opcaoDirecionar;
+    public static String[] listaAulas = new String[4];
+    public static String[] dataAula = new String[4];
+    public static String[] horaAula = new String[4];
 
-    static String usuario = "s", usuarioDigitado, aluno, opcao, possuiPrancha,
+    static Scanner teclado = new Scanner(System.in);
+    static int senha = 1, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
+
+    static String usuario = "s", usuarioDigitado, opcao, possuiPrancha,
             professor, escolhaPrancha, formaPagamento, finalCompra;
 
     static double alturaAluno;
@@ -72,6 +76,7 @@ public class sistemaStudySurf{
         int opcao = 0;
         int i = 0;
         int p = 0;
+        int a = 0;
         while (opcao != 10) {
 
             System.out.println(menu);
@@ -96,11 +101,11 @@ public class sistemaStudySurf{
                     break;
 
                 case 5:
-                    marcarAula();
+                    marcarAula(a);
                     break;
 
                 case 6:
-                    listaAulas();
+                    listaAulas(a);
                     break;
             }
         }
@@ -285,7 +290,13 @@ public class sistemaStudySurf{
 
     public static void listaProfessores(int p){
 
-        System.out.println("\n****** Lista de professores ******\n");
+        System.out.println("""
+                \n****** Lista de professores ******
+                Bryan
+                Marco
+                Weslley
+                """);
+
         for (int k = 0; k < p; k++) {
             System.out.println(listaProfessor[k]);
         }
@@ -294,14 +305,17 @@ public class sistemaStudySurf{
 
     }
 
-    public static void marcarAula(){
+    public static int marcarAula(int a){
 
 
         System.out.println("Qual aluno deseja marcar a aula?");
-        aluno = teclado.next();
+        listaAulas[a] = teclado.next();
 
-        System.out.println("Qual dia e horário desejado para aula?");
-        diaEHora = teclado.nextInt();
+        System.out.println("Qual é o dia desejado para aula?");
+        dataAula[a] = teclado.next();
+
+        System.out.println("Qual é o horario desejado para aula?");
+        horaAula[a] = teclado.next();
 
 
         System.out.println("Nome do professor que irá dar aula: ");
@@ -309,10 +323,25 @@ public class sistemaStudySurf{
 
 
         voltarMenu();
+        a++;
+        return(a);
 
     }
 
-    public static void listaAulas(){
+    public static void listaAulas(int a){
+
+        System.out.println("""
+                \n****** Lista de professores ******
+                Bryan
+                Marco
+                Weslley
+                """);
+        for (int l = 0; l < a; l++) {
+            System.out.println(listaProfessor[l]);
+        }
+
+        voltarMenu();
+
 
     }
 }
