@@ -1,4 +1,4 @@
-package trabalgopi;
+package trabalhoPi;
 
 
 import java.util.Objects;
