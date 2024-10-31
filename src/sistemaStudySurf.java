@@ -1,3 +1,5 @@
+package trabalgopi;
+
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -107,6 +109,11 @@ public class sistemaStudySurf{
                 case 6:
                     listaAulas(a);
                     break;
+                    
+                case 10:
+                    System.out.println("Finalizando o Sistema...");
+                    break;
+                    default:
             }
         }
     }
