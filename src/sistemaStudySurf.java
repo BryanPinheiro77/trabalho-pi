@@ -1,31 +1,33 @@
-package trabalhoPi;
+package Marcola;
 
-
+import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class sistemaStudySurf{
+public class pi {
 
-    public static String[] listaAluno = new String[4];;
-    public static int[] idadeAluno = new int[4];;
-    public static int[] numeroAluno = new int[4];
-    public static String[] conhecimentoAluno = new String[4];
+        public static String[] listaAluno = new String[2];;
+        public static int[] idadeAluno = new int[2];;
+        public static int[] numeroAluno = new int[2];
+        public static String[] conhecimentoAluno = new String[2];
+
+        public static String[] devedorAlunos = new String[2];
+        public static String [] diaPagmento = new String[2];
+        public static double mensalidades;
+        public static String FormaPagamento ;
 
 
 
-    public static String[] listaProfessor = new String[4];
-    public static int[] idadeProfessor = new int[4];
-    public static float[] rgProfessor = new float[4];
-    public static String[] enderecoProfessor = new String[4];
-
-    public static String[] listaAulas = new String[4];
-    public static String[] dataAula = new String[4];
-    public static String[] horaAula = new String[4];
+    public static String[] listaProfessor;
+    public static int[] idadeProfessor;
+    public static float[] rgProfessor;
+    public static String[] enderecoProfessor;
 
     static Scanner teclado = new Scanner(System.in);
-    static int senha = 1, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
+    static int senha = 1, senhaDigitada, pesoAluno, o = 10, diaEHora, opcaoDirecionar;
 
-    static String usuario = "s", usuarioDigitado, opcao, possuiPrancha,
+    static String usuario = "s", usuarioDigitado, aluno, opcao, possuiPrancha,
             professor, escolhaPrancha, formaPagamento, finalCompra;
 
     static double alturaAluno;
@@ -77,8 +79,7 @@ public class sistemaStudySurf{
 
         int opcao = 0;
         int i = 0;
-        int p = 0;
-        int a = 0;
+        int c = 0;
         while (opcao != 10) {
 
             System.out.println(menu);
@@ -91,7 +92,7 @@ public class sistemaStudySurf{
                     break;
 
                 case 2:
-                    p = cadastrarProfessor(p);
+                    cadastrarProfessor();
                     break;
 
                 case 3:
@@ -99,21 +100,19 @@ public class sistemaStudySurf{
                     break;
 
                 case 4:
-                    listaProfessores(p);
+                    listaProfessores();
                     break;
 
                 case 5:
-                    marcarAula(a);
+                    marcarAula();
                     break;
 
                 case 6:
-                    listaAulas(a);
+                    listaAulas();
                     break;
-                    
-                case 10:
-                    System.out.println("Finalizando o Sistema...");
-                    break;
-                    default:
+
+                case 8:
+                    CadastrarMensalidades(c);
             }
         }
     }
@@ -216,17 +215,17 @@ public class sistemaStudySurf{
 
         //for (i = 0; i < listaAluno.length; i++) {
 
-        System.out.print("Digite o nome do aluno: ");
-        listaAluno[i] = teclado.next();
+            System.out.print("Digite o nome do aluno: ");
+            listaAluno[i] = teclado.next();
 
-        System.out.print("Digite a idade do aluno: ");
-        idadeAluno[i] = teclado.nextInt();
+            System.out.print("Digite a idade do aluno: ");
+            idadeAluno[i] = teclado.nextInt();
 
-        System.out.print("Digite o número para contato: ");
-        numeroAluno[i] = teclado.nextInt();
+            System.out.print("Digite o número para contato: ");
+            numeroAluno[i] = teclado.nextInt();
 
-        System.out.print("Qual o nivel de conhecimento do aluno: ");
-        conhecimentoAluno[i] = teclado.next();
+            System.out.print("Qual o nivel de conhecimento do aluno: ");
+            conhecimentoAluno[i] = teclado.next();
 
         //}
 
@@ -234,21 +233,41 @@ public class sistemaStudySurf{
         System.out.println("O aluno possui prancha?");
         possuiPrancha = teclado.next();
 
-        if (Objects.equals(possuiPrancha, "não")) {
+        if (Objects.equals(possuiPrancha, "não"))
+
+        {
 
             System.out.println("Para recomendarmos o melhor tipo de prancha para o aluno informe:");
 
             System.out.println("Qual o peso do aluno?");
             pesoAluno = teclado.nextInt();
-
             System.out.println("Quanto de altura o aluno tem?");
             alturaAluno = teclado.nextDouble();
 
-            System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma dasdaw");
+            if (pesoAluno >= 70 && pesoAluno <= 80) {
+                if (alturaAluno >= 1.40 && alturaAluno <= 1.80 ) {
+                System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma Speed ");
+            }
+        }
+            if(pesoAluno > 81 && pesoAluno< 92){
+            }
+            if (alturaAluno>1.81 && alturaAluno < 1.90){
+                System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma Fan");
+
+            }
+            if(pesoAluno >93 && pesoAluno < 120){
+
+            }
+            if (alturaAluno>1.82 && alturaAluno<2.30)
+                System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma Long ");
 
             System.out.println("Aluno cadastrado com sucesso!\n");
 
             direcionamento();
+
+
+
+
 
 
         }  else if ( possuiPrancha == "sim") {
@@ -262,67 +281,67 @@ public class sistemaStudySurf{
         return(i);
     }
 
-    public static int cadastrarProfessor(int p){
+    public static void cadastrarProfessor(){
+        listaProfessor = new String[2];
+        idadeProfessor = new int[2];
+        rgProfessor = new float[2];
+        enderecoProfessor = new String[2];
 
-        System.out.println("Qual nome do professor que deseja cadastrar: ");
-        listaProfessor[p] = teclado.next();
+        /*.out.print("Qual nome do professor que deseja cadastrar: ");
+        listaProfessor = teclado.next();
 
-        System.out.println("Qual a idade do professor ? ");
-        idadeProfessor[p] = teclado.nextInt();
+        System.out.print("Qual a idade do professor ?:  ");
+        idadeProfessor = teclado.nextInt();
 
-        System.out.println("Qual RG do professor? ");
-        rgProfessor[p] = teclado.nextInt();
+        System.out.print("Qual RG do professor?: ");
+        rgProfessor = teclado.nextInt();
 
-        System.out.println("Qual o endereço do Professor? ");
-        enderecoProfessor[p] = teclado.nextLine();
+        System.out.print("Qual o endereço do Professor?: ");
+        enderecoProfessor = teclado.next();
 
         System.out.println("Professor cadastrado com sucesso!");
 
-        voltarMenu();
-        p++;
-        return(p);
-
+        voltarMenu();*/
     }
-
 
     public static void listaAlunos(int i){
 
-        System.out.println("\n****** Lista de alunos ******\n");
+        /*System.out.println("""
+                            \n****** Lista de alunos ******
+                            1- Bryan
+                            2- Marco
+                            3- Maylla
+                            4- Vanessa
+                            5- Weslley
+                            """);*/
         for (int j = 0; j < i; j++) {
             System.out.println(listaAluno[j]);
         }
-        voltarMenu();
+            voltarMenu();
 
     }
 
-    public static void listaProfessores(int p){
+    public static void listaProfessores(){
 
         System.out.println("""
-                \n****** Lista de professores ******
-                Bryan
-                Marco
-                Weslley
-                """);
-
-        for (int k = 0; k < p; k++) {
-            System.out.println(listaProfessor[k]);
-        }
+                            \n****** Lista de professores ******
+                            1- Gustavo
+                            2- Guilherme
+                            3- Pedro
+                            """);
 
         voltarMenu();
 
     }
 
-    public static int marcarAula(int a){
+    public static void marcarAula(){
 
 
         System.out.println("Qual aluno deseja marcar a aula?");
-        listaAulas[a] = teclado.next();
+        aluno = teclado.next();
 
-        System.out.println("Qual é o dia desejado para aula?");
-        dataAula[a] = teclado.next();
-
-        System.out.println("Qual é o horario desejado para aula?");
-        horaAula[a] = teclado.next();
+        System.out.println("Qual dia e horário desejado para aula?");
+        diaEHora = teclado.nextInt();
 
 
         System.out.println("Nome do professor que irá dar aula: ");
@@ -330,25 +349,22 @@ public class sistemaStudySurf{
 
 
         voltarMenu();
-        a++;
-        return(a);
 
     }
 
-    public static void listaAulas(int a){
-
-        System.out.println("""
-                \n****** Lista de professores ******
-                Bryan
-                Marco
-                Weslley
-                """);
-        for (int l = 0; l < a; l++) {
-            System.out.println(listaProfessor[l]);
-        }
-
-        voltarMenu();
-
+    public static void listaAulas(){
 
     }
+
+    public static void CadastrarMensalidades(int c){
+
+
+        System.out.println("Qual nome do aluno que deseja cadastrar a mensalidade : ");
+        String devedorAluno = devedorAlunos[c];
+        teclado.next();
+
+    }
+
+
+
 }
