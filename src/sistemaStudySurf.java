@@ -5,9 +5,7 @@ import java.util.Scanner;
 public class sistemaStudySurf {
 
     public static String[] listaAluno = new String[4];
-    ;
     public static int[] idadeAluno = new int[4];
-    ;
     public static int[] numeroAluno = new int[4];
     public static String[] conhecimentoAluno = new String[4];
 
@@ -23,13 +21,23 @@ public class sistemaStudySurf {
     public static String[] horaAula = new String[4];
 
 
-    public static int[] relatorioAulas = new int[10];
-    public static String[] desempenhoAula = new String[10];
+    public static int[] quantidadeAlunosSeg = new int[10];
+    public static String[] desempenhoAulaSeg = new String[10];
+    public static int[] quantidadeAlunosTer = new int[10];
+    public static String[] desempenhoAulaTer = new String[10];
+    public static int[] quantidadeAlunosQuar = new int[10];
+    public static String[] desempenhoAulaQuar = new String[10];
+    public static int[] quantidadeAlunosQuin = new int[10];
+    public static String[] desempenhoAulaQuin = new String[10];
+    public static int[] quantidadeAlunosSex = new int[10];
+    public static String[] desempenhoAulaSex = new String[10];
+
+    public static int contSeg = 0, contTer = 0, contQuar = 0, contQuin = 0, contSex = 0;
 
     public static String[] devedorAlunos = new String[2];
-    public static String [] diaPagmento = new String[2];
+    public static String[] diaPagmento = new String[2];
     public static double mensalidades;
-    public static String FormaPagamento ;
+    public static String FormaPagamento;
 
     static Scanner input = new Scanner(System.in);
     static int senha = 1, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
@@ -41,7 +49,7 @@ public class sistemaStudySurf {
     static double alturaAluno;
 
     public static void main(String[] args) {
-        int retorno=0;
+        int retorno = 0;
 
         while (retorno == 0) {
             retorno = login();
@@ -128,11 +136,11 @@ public class sistemaStudySurf {
                     break;
 
                 case 7:
-                    r=relatorioAulas(r);
+                    r = relatorioAulas(r);
                     break;
 
                 case 8:
-                  //  CadastrarMensalidades(c);
+                    //  CadastrarMensalidades(c);
 
                 case 10:
                     System.out.println("Finalizando o Sistema...");
@@ -146,7 +154,7 @@ public class sistemaStudySurf {
     public static void voltarMenu() {
         System.out.println("\nDeseja voltar ao menu?");
         opcao = input.next();
-        if (Objects.equals(opcao, "sim")) {
+        if (opcao.equalsIgnoreCase("sim")) {
 
         } else if (opcao.equalsIgnoreCase("não") || opcao.equalsIgnoreCase("nao")) {
             System.out.println("Obrigado por utilizar o sistema, volte sempre!");
@@ -168,15 +176,16 @@ public class sistemaStudySurf {
 
         switch (escolhaPrancha) {
             case "1":
-                System.out.println("forma de pagamento: ");
+                System.out.println("Qual a forma de pagamento? (Debito, credito ou pix");
                 formaPagamento = input.next();
 
                 System.out.println("Desejar finalizar ou cancelar a compra?");
                 finalCompra = input.next();
 
-                if (Objects.equals(finalCompra, "sim") || (Objects.equals(finalCompra, "finalizar"))){
+                if (finalCompra.equalsIgnoreCase("sim") || (finalCompra.equalsIgnoreCase("finalizar"))) {
                     System.out.println("Obrigado pela compra, volte sempre!");
-                } if (finalCompra.equalsIgnoreCase("cancelar") || finalCompra.equalsIgnoreCase("não")) {
+                }
+                if (finalCompra.equalsIgnoreCase("cancelar") || finalCompra.equalsIgnoreCase("não")) {
                     System.out.println("Compra cancelada!");
                 } else {
                     System.out.println("Opção digitada invalida!");
@@ -184,34 +193,33 @@ public class sistemaStudySurf {
                 }
 
             case "2":
-                System.out.println("forma de pagamento: ");
+                System.out.println("Qual a forma de pagamento? (Debito, credito ou pix");
                 formaPagamento = input.next();
 
                 System.out.println("Desejar finalizar ou cancelar a compra?");
                 finalCompra = input.next();
 
-                if (Objects.equals(finalCompra, "finalizar")) {
+                if (finalCompra.equalsIgnoreCase("sim") || (finalCompra.equalsIgnoreCase("finalizar"))) {
                     System.out.println("Obrigado pela compra, volte sempre!");
-                } else if (Objects.equals(finalCompra, "cancelar")) {
+                } else if (finalCompra.equalsIgnoreCase("cancelar") || finalCompra.equalsIgnoreCase("não")) {
                     System.out.println("Compra cancelada!");
                 } else {
                     System.out.println("Opção digitada invalida!");
                     return;
                 }
             case "3":
-                System.out.println("forma de pagamento: ");
+                System.out.println("Qual a forma de pagamento? (Debito, credito ou pix");
                 formaPagamento = input.next();
 
                 System.out.println("Desejar finalizar ou cancelar a compra?");
                 finalCompra = input.next();
 
-                if (Objects.equals(finalCompra, "finalizar")) {
+                if (finalCompra.equalsIgnoreCase("sim") || (finalCompra.equalsIgnoreCase("finalizar"))) {
                     System.out.println("Obrigado pela compra, volte sempre!");
-                } else if (Objects.equals(finalCompra, "cancelar")) {
+                } else if (finalCompra.equalsIgnoreCase("cancelar") || finalCompra.equalsIgnoreCase("não")) {
                     System.out.println("Compra cancelada!");
                 } else {
                     System.out.println("Opção digitada invalida!");
-                    return;
                 }
         }
     }
@@ -229,7 +237,6 @@ public class sistemaStudySurf {
         if (opcaoDirecionar == 1) {
             lojaPranchas();
         } else if (opcaoDirecionar == 2) {
-            return;
         } else if (opcaoDirecionar == 3) {
             System.out.println("Obrigado por utilizar o sistema, volte sempre!");
             System.exit(o);
@@ -269,20 +276,20 @@ public class sistemaStudySurf {
             alturaAluno = input.nextDouble();
 
             if (pesoAluno >= 70 && pesoAluno <= 80) {
-                if (alturaAluno >= 1.40 && alturaAluno <= 1.80 ) {
+                if (alturaAluno >= 1.40 && alturaAluno <= 1.80) {
                     System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma Speed ");
                 }
             }
-            if(pesoAluno > 81 && pesoAluno< 92){
+            if (pesoAluno > 81 && pesoAluno < 92) {
             }
-            if (alturaAluno>1.81 && alturaAluno < 1.90){
+            if (alturaAluno > 1.81 && alturaAluno < 1.90) {
                 System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma Fan");
 
             }
-            if(pesoAluno >93 && pesoAluno < 120){
+            if (pesoAluno > 93 && pesoAluno < 120) {
 
             }
-            if (alturaAluno>1.82 && alturaAluno<2.30)
+            if (alturaAluno > 1.82 && alturaAluno < 2.30)
                 System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma Long ");
 
             System.out.println("Aluno cadastrado com sucesso!\n");
@@ -392,47 +399,128 @@ public class sistemaStudySurf {
 
     public static int relatorioAulas(int r) {
 
-        System.out.println("Quantos alunos estavam na aula?");
-        relatorioAulas[r] = input.nextInt();
+        System.out.println("Qual é o dia do relatório?");
+        String dia = input.next();
 
-        System.out.println("Como foi o desempenho dos alunos?");
-        desempenhoAula[r] = input.next();
+
+        switch (dia) {
+            case "segunda":
+                if (contSeg < 10) {
+                    System.out.println("Quantos alunos estavam na aula?");
+                    quantidadeAlunosSeg[contSeg] = input.nextInt();
+
+                    System.out.println("Como foi o desempenho dos alunos?");
+                    desempenhoAulaSeg[contSeg] = input.next();
+                    contSeg++;
+                } else {
+                    System.out.println("Limite de relatórios para segunda atingido!");
+                }
+                break;
+
+            case "terça":
+                if (contTer < 10) {
+                    System.out.println("Quantos alunos estavam na aula?");
+                    quantidadeAlunosTer[contTer] = input.nextInt();
+
+                    System.out.println("Como foi o desempenho dos alunos?");
+                    desempenhoAulaTer[contTer] = input.next();
+                    contTer++;
+                } else {
+                    System.out.println("Limite de relatórios para terça atingido!");
+                }
+                break;
+
+            case "quarta":
+                if (contQuar < 10) {
+                    System.out.println("Quantos alunos estavam na aula?");
+                    quantidadeAlunosQuar[contQuar] = input.nextInt();
+
+                    System.out.println("Como foi o desempenho dos alunos?");
+                    desempenhoAulaQuar[contQuar] = input.next();
+                    contQuar++;
+                } else {
+                    System.out.println("Limite de relatórios para quarta atingido!");
+                }
+                break;
+
+            case "quinta":
+                if (contQuin < 10) {
+                    System.out.println("Quantos alunos estavam na aula?");
+                    quantidadeAlunosQuin[contQuin] = input.nextInt();
+
+                    System.out.println("Como foi o desempenho dos alunos?");
+                    desempenhoAulaQuin[contQuin] = input.next();
+                    contQuin++;
+                } else {
+                    System.out.println("Limite de relatórios para quinta atingido!");
+                }
+                break;
+
+            case "sexta":
+                if (contSex < 10) {
+                    System.out.println("Quantos alunos estavam na aula?");
+                    quantidadeAlunosSex[contSex] = input.nextInt();
+
+                    System.out.println("Como foi o desempenho dos alunos?");
+                    desempenhoAulaSex[contSex] = input.next();
+                    contSex++;
+                } else {
+                    System.out.println("Limite de relatórios para sexta atingido!");
+                }
+                break;
+
+            default:
+                System.out.println("Dia inválido! Tente novamente.");
+                break;
+        }
+
+
 
         System.out.println("Relatório criado com sucesso!");
 
         System.out.println("Deseja visualizar os relatórios?");
         String relatorios = input.next();
-        System.out.println(r);
+
         if (Objects.equals(relatorios.toUpperCase(), "SIM")) {
+            System.out.println("\n***** Relatórios por dia da semana *****\n");
 
-            System.out.println("""
-                    Qual relatorio deseja visualizar?
-                    1
-                    2
-                    3
-                    4
-                    5
-                    """);
-            int opcaoRelatorio = input.nextInt();
-            r++;
 
-            if (opcaoRelatorio == 1) {
-                for (int relatorio = 0; relatorio < r; relatorio++) {
-                    System.out.println(relatorioAulas[relatorio] + desempenhoAula[relatorio]);
-
-                }
+            for (int relatorioS = 0; relatorioS < contSeg; relatorioS++) {
+                System.out.println("Segunda: " + quantidadeAlunosSeg[relatorioS] + " Alunos e desempenho: " + desempenhoAulaSeg[relatorioS]);
             }
 
+
+            for (int relatorioT = 0; relatorioT < contTer; relatorioT++) {
+                System.out.println("Terça: " + quantidadeAlunosTer[relatorioT] + " Alunos e desempenho: " + desempenhoAulaTer[relatorioT]);
+            }
+
+            for (int relatorioQa = 0; relatorioQa < contQuar; relatorioQa++) {
+                System.out.println("Quarta: " + quantidadeAlunosQuar[relatorioQa] + " Alunos e desempenho: " + desempenhoAulaQuar[relatorioQa]);
+            }
+
+            for (int relatorioQ = 0; relatorioQ < contQuin; relatorioQ++) {
+                System.out.println("Quinta: " + quantidadeAlunosQuin[relatorioQ] + " Alunos e desempenho: " + desempenhoAulaQuin[relatorioQ]);
+            }
+
+            for (int relatorioSe = 0; relatorioSe < contSex; relatorioSe++) {
+                System.out.println("Sexta: " + quantidadeAlunosSex[relatorioSe] + " Alunos e desempenho: " + desempenhoAulaSex[relatorioSe]);
+
+            } if (Objects.equals(relatorios.toUpperCase(), "NÃO") || (Objects.equals(relatorios.toUpperCase(), "NAO"))){
+
+            }
         }
+        r++;
         return r;
     }
-    public static void CadastrarMensalidades(int c){
+
+        public static void CadastrarMensalidades ( int c){
 
 
-        System.out.println("Qual nome do aluno que deseja cadastrar a mensalidade : ");
-        String devedorAluno = devedorAlunos[c];
-        input.next();
+            System.out.println("Qual nome do aluno que deseja cadastrar a mensalidade : ");
+            String devedorAluno = devedorAlunos[c];
+            input.next();
 
+        }
     }
-}
+
 
