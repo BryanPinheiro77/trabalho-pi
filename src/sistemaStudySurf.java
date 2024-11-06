@@ -1,8 +1,11 @@
+package Marcola;
 
+import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class sistemaStudySurf {
+public class pi {
 
     public static String[] listaAluno = new String[4];
     public static int[] idadeAluno = new int[4];
@@ -21,6 +24,12 @@ public class sistemaStudySurf {
     public static String[] horaAula = new String[4];
 
 
+    public static String[] listaDevedores = new String[10];  // Lista de alunos devedores
+    public static double[] valoresMensalidade = new double[10];  // Valores das mensalidades
+    public static String[] datasPagamento = new String[10];  // Datas de pagamento
+    public static int contDevedores = 0;  // Contador para devedores
+
+
     public static int[] quantidadeAlunosSeg = new int[10];
     public static String[] desempenhoAulaSeg = new String[10];
     public static int[] quantidadeAlunosTer = new int[10];
@@ -34,10 +43,10 @@ public class sistemaStudySurf {
 
     public static int contSeg = 0, contTer = 0, contQuar = 0, contQuin = 0, contSex = 0;
 
-    public static String[] devedorAlunos = new String[2];
-    public static String[] diaPagmento = new String[2];
-    public static double mensalidades;
-    public static String FormaPagamento;
+    public static String[] devedores = new String[10]; // lista de alunos que deve
+    public static double[] mensalidades = new double[10]; // valor da mensalidades
+    public static String[] diaPagamento = new String[10]; // data de pagamento
+
 
     static Scanner input = new Scanner(System.in);
     static int senha = 1, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
@@ -103,7 +112,7 @@ public class sistemaStudySurf {
         // "P" para enviar e puxar professores
         // "A" para enviar e puxar aulas
         // "R" para enviar e puxar relatorios
-        int i = 0, p = 0, a = 0, r = 0;
+        int i = 0, p = 0, a = 0, r = 0, c = 0, rp = 0;
         while (opcao != 10) {
 
             System.out.println(menu);
@@ -140,7 +149,12 @@ public class sistemaStudySurf {
                     break;
 
                 case 8:
-                    //  CadastrarMensalidades(c);
+                    CadastrarMensalidades(c);
+                    break;
+
+                case 9:
+                    rp = exibirRelatorioPagamento(rp);
+                    break;
 
                 case 10:
                     System.out.println("Finalizando o Sistema...");
@@ -475,7 +489,6 @@ public class sistemaStudySurf {
         }
 
 
-
         System.out.println("Relatório criado com sucesso!");
 
         System.out.println("Deseja visualizar os relatórios?");
@@ -505,7 +518,8 @@ public class sistemaStudySurf {
             for (int relatorioSe = 0; relatorioSe < contSex; relatorioSe++) {
                 System.out.println("Sexta: " + quantidadeAlunosSex[relatorioSe] + " Alunos e desempenho: " + desempenhoAulaSex[relatorioSe]);
 
-            } if (Objects.equals(relatorios.toUpperCase(), "NÃO") || (Objects.equals(relatorios.toUpperCase(), "NAO"))){
+            }
+            if (Objects.equals(relatorios.toUpperCase(), "NÃO") || (Objects.equals(relatorios.toUpperCase(), "NAO"))) {
 
             }
         }
@@ -513,14 +527,61 @@ public class sistemaStudySurf {
         return r;
     }
 
-        public static void CadastrarMensalidades ( int c){
+
+    public static int CadastrarMensalidades(int c) {
+        int indexDevedor = contDevedores; // vi no chat que é contador global
+        System.out.println("\n*** Cadastro de Mensalidades ***");
+
+        while (indexDevedor < devedores.length) {
+            System.out.println("Digite o nome do aluno (ou 'fim' para terminar):");
+            String nomeAluno = input.next();
+            if (nomeAluno.equalsIgnoreCase("fim")) {
+                break;
+            }
+            devedores[indexDevedor] = nomeAluno;
+
+            System.out.println("Digite o valor da mensalidade de " + nomeAluno + ": ");
+            mensalidades[indexDevedor] = input.nextDouble();
+
+            input.nextLine(); // Para ir pra proxima linha
+
+            System.out.println("Digite a data do pagamento (dd/mm/aaaa) para " + nomeAluno + ": ");
+            diaPagamento[indexDevedor] = input.nextLine();
+
+            indexDevedor++; // colocando um contador
 
 
-            System.out.println("Qual nome do aluno que deseja cadastrar a mensalidade : ");
-            String devedorAluno = devedorAlunos[c];
-            input.next();
+            contDevedores = indexDevedor;// mesmo la de cima
 
+            System.out.println("Deseja cadastrar outra mensalidade? (sim/não): ");
+            String resposta = input.nextLine();
+            if (resposta.equalsIgnoreCase("não") || resposta.equalsIgnoreCase("nao")) {
+                break;
+            }
         }
+
+        System.out.println("\n*** Lista de Devedores e Mensalidades ***");
+        for (c = 0; c < indexDevedor; c++) {
+            System.out.println("Aluno: " + devedores[c] + " | Mensalidade: R$" + mensalidades[c] + " | Data de pagamento: " + diaPagamento[c]);
+        }
+        return (c);
     }
+
+    public static int exibirRelatorioPagamento(int rp) {
+        // Verificando se há devedores registrados
+        if (contDevedores == 0) {
+            System.out.println("Nenhum pagamento cadastrado.");
+        } else {
+            System.out.println("\n***** Relatórios de Pagamento *****");
+            for (int i = 0; i < contDevedores; i++) {
+                System.out.println("Aluno: " + devedores[i] + " | Mensalidade: R$" + mensalidades[i] + " | Data de pagamento: " + diaPagamento[i]);
+            }
+        }
+
+        return (rp);
+    }
+}
+
+
 
 
