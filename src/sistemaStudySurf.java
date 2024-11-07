@@ -6,13 +6,13 @@ import java.util.Scanner;
 public class sistemaStudySurf {
 
     public static String[] listaAluno = new String[4];
-    public static int[] idadeAluno = new int[4];
+    public static String[] idadeAluno = new String[4];
     public static String[] numeroAluno = new String[4];
     public static String[] conhecimentoAluno = new String[4];
 
 
     public static String[] listaProfessor = new String[4];
-    public static int[] idadeProfessor = new int[4];
+    public static String[] idadeProfessor = new String[4];
     public static float[] rgProfessor = new float[4];
     public static String[] enderecoProfessor = new String[4];
 
@@ -49,10 +49,10 @@ public class sistemaStudySurf {
 
 
     static Scanner input = new Scanner(System.in);
-    static int senha = 1234, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
+    static int senha = 1, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
 
 
-    static String usuario = "studysurf", usuarioDigitado, opcao, possuiPrancha,escolhaPrancha, formaPagamento, finalCompra;
+    static String usuario = "s", usuarioDigitado, opcao, possuiPrancha,escolhaPrancha, formaPagamento, finalCompra;
 
     static double alturaAluno;
 
@@ -264,8 +264,8 @@ public class sistemaStudySurf {
         System.out.print("Digite o nome do aluno: ");
         listaAluno[i] = input.next();
 
-        System.out.print("Digite a idade do aluno: ");
-        idadeAluno[i] = input.nextInt();
+        System.out.print("Digite a data de nascimento do aluno: ");
+        idadeAluno[i] = input.next();
 
         System.out.print("Digite o número para contato: ");
         numeroAluno[i] = input.next();
@@ -279,7 +279,7 @@ public class sistemaStudySurf {
         System.out.println("O aluno possui prancha?");
         possuiPrancha = input.next();
 
-        if (Objects.equals(possuiPrancha.toUpperCase(), "NÃO") || Objects.equals(possuiPrancha, "NAO")) {
+        if (Objects.equals(possuiPrancha.toUpperCase(), "NÃO") || (Objects.equals(possuiPrancha.toUpperCase(), "NAO"))) {
 
             System.out.println("Para recomendarmos o melhor tipo de prancha para o aluno informe:");
 
@@ -290,7 +290,7 @@ public class sistemaStudySurf {
 
             if (pesoAluno >= 70 && pesoAluno <= 80) {
                 if (alturaAluno >= 1.40 && alturaAluno <= 1.80) {
-                    System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma Speed ");
+                    System.out.println("Analisando as caracteristicas do aluno recomendamos que a prancha seja uma Speed");
                 }
             }
             if (pesoAluno > 81 && pesoAluno < 92) {
@@ -325,8 +325,8 @@ public class sistemaStudySurf {
         System.out.println("Qual nome do professor que deseja cadastrar: ");
         listaProfessor[p] = input.next();
 
-        System.out.println("Qual a idade do professor ? ");
-        idadeProfessor[p] = input.nextInt();
+        System.out.println("Qual a data de nascimento do professor ? ");
+        idadeProfessor[p] = input.next();
 
         System.out.println("Qual RG do professor? ");
         rgProfessor[p] = input.nextInt();
@@ -342,7 +342,6 @@ public class sistemaStudySurf {
         return (p);
 
     }
-
 
     public static void listaAlunos(int i) {
 
@@ -410,7 +409,7 @@ public class sistemaStudySurf {
 
     public static int relatorioAulas(int r) {
 
-        System.out.println("Qual é o dia do relatório?");
+        System.out.println("Qual é o dia do relatório? (Segunda a sexta)");
         String dia = input.next();
 
 
@@ -523,7 +522,6 @@ public class sistemaStudySurf {
         r++;
         return r;
     }
-
 
     public static int CadastrarMensalidades(int c) {
         int indexDevedor = contDevedores; // vi no chat que é contador global
