@@ -1,15 +1,13 @@
-package Marcola;
-
 import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class pi {
+public class sistemaStudySurf {
 
     public static String[] listaAluno = new String[4];
     public static int[] idadeAluno = new int[4];
-    public static int[] numeroAluno = new int[4];
+    public static String[] numeroAluno = new String[4];
     public static String[] conhecimentoAluno = new String[4];
 
 
@@ -19,9 +17,11 @@ public class pi {
     public static String[] enderecoProfessor = new String[4];
 
 
-    public static String[] listaAulas = new String[4];
-    public static String[] dataAula = new String[4];
-    public static String[] horaAula = new String[4];
+    public static String[] listaAulas = new String[10];
+    public static String[] dataAula = new String[10];
+    public static String[] horaAula = new String[10];
+    public static String[] professor = new String[10];
+    public static int contAulas = 0;
 
 
     public static String[] listaDevedores = new String[10];  // Lista de alunos devedores
@@ -49,11 +49,10 @@ public class pi {
 
 
     static Scanner input = new Scanner(System.in);
-    static int senha = 1, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
+    static int senha = 1234, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
 
 
-    static String usuario = "s", usuarioDigitado, opcao, possuiPrancha,
-            professor, escolhaPrancha, formaPagamento, finalCompra;
+    static String usuario = "studysurf", usuarioDigitado, opcao, possuiPrancha,escolhaPrancha, formaPagamento, finalCompra;
 
     static double alturaAluno;
 
@@ -71,7 +70,7 @@ public class pi {
 
     public static int login() {
 
-        System.out.println("Seja Bem Vindo ao sistema da Study Surf!");
+        System.out.println("\nSeja Bem Vindo ao sistema da Study Surf!");
 
         System.out.println("\n***** Faça seu login! *****");
 
@@ -87,7 +86,7 @@ public class pi {
             return 1;
 
         } else {
-            System.out.println("Usuário ou senha invalidos. Tente novamente!");
+            System.out.println("\nUsuário ou senha invalidos. Tente novamente!");
             return 0;
         }
     }
@@ -149,7 +148,7 @@ public class pi {
                     break;
 
                 case 8:
-                    CadastrarMensalidades(c);
+                   c = CadastrarMensalidades(c);
                     break;
 
                 case 9:
@@ -269,7 +268,7 @@ public class pi {
         idadeAluno[i] = input.nextInt();
 
         System.out.print("Digite o número para contato: ");
-        numeroAluno[i] = input.nextInt();
+        numeroAluno[i] = input.next();
 
         System.out.print("Qual o nivel de conhecimento do aluno: ");
         conhecimentoAluno[i] = input.next();
@@ -280,7 +279,7 @@ public class pi {
         System.out.println("O aluno possui prancha?");
         possuiPrancha = input.next();
 
-        if (Objects.equals(possuiPrancha.toUpperCase(), "não") || Objects.equals(possuiPrancha, "nao")) {
+        if (Objects.equals(possuiPrancha.toUpperCase(), "NÃO") || Objects.equals(possuiPrancha, "NAO")) {
 
             System.out.println("Para recomendarmos o melhor tipo de prancha para o aluno informe:");
 
@@ -334,6 +333,7 @@ public class pi {
 
         System.out.println("Qual o endereço do Professor? ");
         enderecoProfessor[p] = input.nextLine();
+        enderecoProfessor[p] = input.nextLine();
 
         System.out.println("Professor cadastrado com sucesso!");
 
@@ -356,12 +356,7 @@ public class pi {
 
     public static void listaProfessores(int p) {
 
-        System.out.println("""
-                \n****** Lista de professores ******
-                Bryan
-                Marco
-                Weslley
-                """);
+        System.out.println("\n****** Lista de professores ******");
 
         for (int k = 0; k < p; k++) {
             System.out.println(listaProfessor[k]);
@@ -372,43 +367,45 @@ public class pi {
     }
 
     public static int marcarAula(int a) {
+        if (contAulas < listaAulas.length) {  // Verifica se há espaço nos vetores
+            System.out.println("Qual aluno deseja marcar a aula?");
+            listaAulas[contAulas] = input.next();  // Adiciona o nome do aluno
 
+            System.out.println("Qual é o dia desejado para a aula?");
+            dataAula[contAulas] = input.next();  // Adiciona a data da aula
 
-        System.out.println("Qual aluno deseja marcar a aula?");
-        listaAulas[a] = input.next();
+            System.out.println("Qual é o horário desejado para a aula?");
+            horaAula[contAulas] = input.next();  // Adiciona o horário da aula
 
-        System.out.println("Qual é o dia desejado para aula?");
-        dataAula[a] = input.next();
+            System.out.println("Nome do professor que irá dar a aula:");
+            professor[contAulas] = input.next();  // Adiciona o nome do professor
 
-        System.out.println("Qual é o horario desejado para aula?");
-        horaAula[a] = input.next();
+            contAulas++;  // Incrementa o contador de aulas
 
+            System.out.println("Aula marcada com sucesso!");
 
-        System.out.println("Nome do professor que irá dar aula: ");
-        professor = input.next();
-
-
-        voltarMenu();
+            voltarMenu();
+        } else {
+            System.out.println("Não há espaço para mais aulas. Limite de 10 aulas atingido.");
+        }
         a++;
         return (a);
 
     }
 
     public static void listaAulas(int a) {
+        System.out.println("\n****** Lista de aulas ******");
 
-        System.out.println("""
-                \n****** Lista de professores ******
-                Bryan
-                Marco
-                Weslley
-                """);
-        for (int l = 0; l < a; l++) {
-            System.out.println(listaProfessor[l]);
+        if (contAulas == 0) {
+            System.out.println("Nenhuma aula marcada ainda.");
+        } else {
+            // Exibe todas as aulas registradas
+            for (int i = 0; i < contAulas; i++) {
+                System.out.println("Aluno: " + listaAulas[i] + " | Data: " + dataAula[i] + " | Hora: " + horaAula[i] + " | Professor: " + professor[i]);
+            }
         }
 
         voltarMenu();
-
-
     }
 
     public static int relatorioAulas(int r) {
@@ -581,7 +578,3 @@ public class pi {
         return (rp);
     }
 }
-
-
-
-
