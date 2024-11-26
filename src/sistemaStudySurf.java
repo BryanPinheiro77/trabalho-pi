@@ -43,10 +43,10 @@ public class sistemaStudySurf {
 
 
     static Scanner input = new Scanner(System.in);
-    static int senha = 1, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
+    static int senha = 1234, senhaDigitada, pesoAluno, o = 10, opcaoDirecionar;
 
 
-    static String usuario = "s", usuarioDigitado, opcao, possuiPrancha,escolhaPrancha, formaPagamento, finalCompra;
+    static String usuario = "studysurf", usuarioDigitado, opcao, possuiPrancha,escolhaPrancha, formaPagamento, finalCompra;
 
     static double alturaAluno;
 
