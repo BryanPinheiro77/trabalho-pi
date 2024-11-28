@@ -355,7 +355,7 @@ public class sistemaStudySurf {
         idadeProfessor[p] = input.next();
 
         System.out.println("Qual RG do professor?(sem pontos ou traços) ");
-        rgProfessor[p] = input.next();
+        
         try {
             rgProfessor[p] = input.next();
         } catch (Exception e) {
@@ -381,7 +381,7 @@ public class sistemaStudySurf {
         System.out.println("\n**** Lista de alunos cadastrados ****\n");
         for (int j = 0; j < i; j++) {
             System.out.println("Nome: " + listaAluno[j]);
-            System.out.println("Idade: " + idadeAluno[j]);
+            System.out.println("Nascimento: " + idadeAluno[j]);
             System.out.println("Número: " + numeroAluno[j]);
             System.out.println("Nível de conhecimento: " + conhecimentoAluno[j]);
             System.out.println();
@@ -396,7 +396,7 @@ public class sistemaStudySurf {
 
         for (int k = 0; k < p; k++) {
             System.out.println("Nome: " + listaProfessor[k]);
-            System.out.println("Idade: " + idadeProfessor[k]);
+            System.out.println("Nascimento: " + idadeProfessor[k]);
             System.out.println("RG: " + rgProfessor[k]);
             System.out.println("Endereço: " + enderecoProfessor[k]);
             System.out.println();
